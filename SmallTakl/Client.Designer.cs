@@ -78,6 +78,7 @@
       // 
       this.IPClient1TextBox.Location = new System.Drawing.Point(88, 29);
       this.IPClient1TextBox.Name = "IPClient1TextBox";
+      this.IPClient1TextBox.ReadOnly = true;
       this.IPClient1TextBox.Size = new System.Drawing.Size(136, 20);
       this.IPClient1TextBox.TabIndex = 0;
       // 

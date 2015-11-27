@@ -12,16 +12,19 @@ namespace SmallTakl
 {
   public partial class Client : UserControl
   {
+    Connector connect;
+
     public Client()
     {
       InitializeComponent();
-      Connector connect = new Connector();
+
+      connect = new Connector();
+      IPClient1TextBox.Text = connect.GetLocalIP();
     }
 
 
     private void sendButton_Click(object sender, EventArgs e)
     {
-
     }
   }
 }
