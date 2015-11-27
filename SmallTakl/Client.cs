@@ -15,6 +15,13 @@ namespace SmallTakl
     public Client()
     {
       InitializeComponent();
+      Connector connect = new Connector();
+    }
+
+
+    private void sendButton_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }
