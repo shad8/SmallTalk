@@ -38,6 +38,13 @@ namespace SmallTakl
       return "127.0.0.1";
     }
 
+    public void Send(string text)
+    {
+      byte[] message = new byte[1500];
+      message = new ASCIIEncoding().GetBytes(text);
+      socket.Send(message);
+    }
+
     public void Start(string localPort, string IP, string port)
     {
       epLocal = new IPEndPoint(IPAddress.Parse(localIP), Convert.ToInt32(localPort));

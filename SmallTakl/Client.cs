@@ -20,10 +20,17 @@ namespace SmallTakl
 
       connect = new Connector();
       IPClient1TextBox.Text = connect.LocalIP;
+    }
 
+
+    private void sendButton_Click(object sender, EventArgs e)
+    {
       try
       {
-        listMessage.Items.Add("Friend: " + connect.ReceiveMessage);
+        string message = messageTextBox.Text;
+        connect.Send(message);
+        listMessage.Items.Add("Me: " + message);
+        messageTextBox.Clear();
       }
       catch (Exception exp)
       {
@@ -31,13 +38,9 @@ namespace SmallTakl
       }
     }
 
-
-    private void sendButton_Click(object sender, EventArgs e)
-    {
-    }
-
     private void startButon_Click(object sender, EventArgs e)
     {
+      GetMessage();
       try
       {
         connect.Start(portClient1TextBox.Text, IPClient2TextBox.Text, portClient2TextBox.Text);
@@ -46,6 +49,18 @@ namespace SmallTakl
         startButon.Enabled = false;
         sendButton.Enabled = true;
         messageTextBox.Focus();
+      }
+      catch (Exception exp)
+      {
+        MessageBox.Show("Error: " + exp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
+    private void GetMessage() {
+      try
+      {
+        if (connect.ReceiveMessage != "")
+          listMessage.Items.Add("Friend: " + connect.ReceiveMessage);
       }
       catch (Exception exp)
       {
