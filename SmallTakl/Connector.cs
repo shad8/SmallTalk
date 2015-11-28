@@ -13,17 +13,21 @@ namespace SmallTakl
     Socket socket;
     EndPoint epLocal, epRemote;
 
+    string localIP;
+
     string receiveMessage = "";
 
     public Connector()
     {
       socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
       socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+      localIP = GetLocalIP();
     }
 
     public string ReceiveMessage { get { return receiveMessage;  } }
+    public string LocalIP { get { return localIP; } }
 
-    public string GetLocalIP()
+    private string GetLocalIP()
     {
       IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
       foreach (IPAddress ip in host.AddressList)
@@ -32,6 +36,18 @@ namespace SmallTakl
           return ip.ToString();
       }
       return "127.0.0.1";
+    }
+
+    public void Start(string localPort, string IP, string port)
+    {
+      epLocal = new IPEndPoint(IPAddress.Parse(localIP), Convert.ToInt32(localPort));
+      socket.Bind(epLocal);
+
+      epRemote = new IPEndPoint(IPAddress.Parse(IP), Convert.ToInt32(port));
+      socket.Connect(epRemote);
+
+      byte[] buffer = new byte[1500];
+      socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(MessageCallBack), buffer);
     }
 
     private void MessageCallBack(IAsyncResult aResult)

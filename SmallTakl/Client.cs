@@ -19,12 +19,38 @@ namespace SmallTakl
       InitializeComponent();
 
       connect = new Connector();
-      IPClient1TextBox.Text = connect.GetLocalIP();
+      IPClient1TextBox.Text = connect.LocalIP;
+
+      try
+      {
+        listMessage.Items.Add("Friend: " + connect.ReceiveMessage);
+      }
+      catch (Exception exp)
+      {
+        MessageBox.Show("Error: " + exp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
     }
 
 
     private void sendButton_Click(object sender, EventArgs e)
     {
+    }
+
+    private void startButon_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        connect.Start(portClient1TextBox.Text, IPClient2TextBox.Text, portClient2TextBox.Text);
+
+        startButon.Text = "Connected";
+        startButon.Enabled = false;
+        sendButton.Enabled = true;
+        messageTextBox.Focus();
+      }
+      catch (Exception exp)
+      {
+        MessageBox.Show("Error: " + exp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
     }
   }
 }
