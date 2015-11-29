@@ -16,5 +16,10 @@ namespace SmallTalk
     {
       InitializeComponent();
     }
+
+    private void client1_Load(object sender, EventArgs e)
+    {
+
+    }
   }
 }

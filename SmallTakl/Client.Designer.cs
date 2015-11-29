@@ -55,7 +55,7 @@
       this.client1GroupBox.Controls.Add(this.IPClient1Label);
       this.client1GroupBox.Controls.Add(this.portClient1TextBox);
       this.client1GroupBox.Controls.Add(this.IPClient1TextBox);
-      this.client1GroupBox.Location = new System.Drawing.Point(13, 26);
+      this.client1GroupBox.Location = new System.Drawing.Point(13, 19);
       this.client1GroupBox.Name = "client1GroupBox";
       this.client1GroupBox.Size = new System.Drawing.Size(218, 100);
       this.client1GroupBox.TabIndex = 0;
@@ -101,7 +101,7 @@
       this.client2GroupBox.Controls.Add(this.portClient2Label);
       this.client2GroupBox.Controls.Add(this.portClient2TextBox);
       this.client2GroupBox.Controls.Add(this.IPClient2TextBox);
-      this.client2GroupBox.Location = new System.Drawing.Point(244, 26);
+      this.client2GroupBox.Location = new System.Drawing.Point(244, 19);
       this.client2GroupBox.Name = "client2GroupBox";
       this.client2GroupBox.Size = new System.Drawing.Size(218, 100);
       this.client2GroupBox.TabIndex = 1;
@@ -173,9 +173,9 @@
       // 
       // startButon
       // 
-      this.startButon.Location = new System.Drawing.Point(468, 32);
+      this.startButon.Location = new System.Drawing.Point(468, 25);
       this.startButon.Name = "startButon";
-      this.startButon.Size = new System.Drawing.Size(75, 43);
+      this.startButon.Size = new System.Drawing.Size(77, 43);
       this.startButon.TabIndex = 6;
       this.startButon.Text = "Start";
       this.startButon.UseVisualStyleBackColor = true;
@@ -184,9 +184,9 @@
       // closeButton
       // 
       this.closeButton.Enabled = false;
-      this.closeButton.Location = new System.Drawing.Point(468, 79);
+      this.closeButton.Location = new System.Drawing.Point(468, 72);
       this.closeButton.Name = "closeButton";
-      this.closeButton.Size = new System.Drawing.Size(75, 47);
+      this.closeButton.Size = new System.Drawing.Size(77, 47);
       this.closeButton.TabIndex = 7;
       this.closeButton.Text = "Close";
       this.closeButton.UseVisualStyleBackColor = true;
