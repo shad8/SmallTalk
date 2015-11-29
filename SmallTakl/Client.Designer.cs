@@ -45,8 +45,10 @@
       this.sendButton = new System.Windows.Forms.Button();
       this.startButon = new System.Windows.Forms.Button();
       this.closeButton = new System.Windows.Forms.Button();
+      this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
       this.client1GroupBox.SuspendLayout();
       this.client2GroupBox.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
       this.SuspendLayout();
       // 
       // client1GroupBox
@@ -154,6 +156,7 @@
       // 
       // listMessage
       // 
+      this.listMessage.ForeColor = System.Drawing.SystemColors.HotTrack;
       this.listMessage.FormattingEnabled = true;
       this.listMessage.Location = new System.Drawing.Point(13, 138);
       this.listMessage.Name = "listMessage";
@@ -190,6 +193,11 @@
       this.closeButton.TabIndex = 7;
       this.closeButton.Text = "Close";
       this.closeButton.UseVisualStyleBackColor = true;
+      this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+      // 
+      // errorProvider1
+      // 
+      this.errorProvider1.ContainerControl = this;
       // 
       // Client
       // 
@@ -208,6 +216,7 @@
       this.client1GroupBox.PerformLayout();
       this.client2GroupBox.ResumeLayout(false);
       this.client2GroupBox.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -231,5 +240,6 @@
     private System.Windows.Forms.Button sendButton;
     private System.Windows.Forms.Button startButon;
     private System.Windows.Forms.Button closeButton;
+    private System.Windows.Forms.ErrorProvider errorProvider1;
   }
 }

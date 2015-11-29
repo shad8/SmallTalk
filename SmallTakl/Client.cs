@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 namespace SmallTakl
@@ -45,6 +39,7 @@ namespace SmallTakl
         listMessage.Invoke(connect.sendText, s);
       else
       {
+        SystemSounds.Beep.Play();
         listMessage.Items.Add("Friend: " + s);
       }
     }
@@ -65,6 +60,11 @@ namespace SmallTakl
       {
         MessageBox.Show("Error: " + exp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
+    }
+
+    private void closeButton_Click(object sender, EventArgs e)
+    {
+      connect.Dispose();
     }
   }
 }
