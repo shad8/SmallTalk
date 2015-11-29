@@ -44,6 +44,7 @@
       this.listMessage = new System.Windows.Forms.ListBox();
       this.sendButton = new System.Windows.Forms.Button();
       this.startButon = new System.Windows.Forms.Button();
+      this.closeButton = new System.Windows.Forms.Button();
       this.client1GroupBox.SuspendLayout();
       this.client2GroupBox.SuspendLayout();
       this.SuspendLayout();
@@ -56,7 +57,7 @@
       this.client1GroupBox.Controls.Add(this.IPClient1TextBox);
       this.client1GroupBox.Location = new System.Drawing.Point(13, 26);
       this.client1GroupBox.Name = "client1GroupBox";
-      this.client1GroupBox.Size = new System.Drawing.Size(230, 100);
+      this.client1GroupBox.Size = new System.Drawing.Size(218, 100);
       this.client1GroupBox.TabIndex = 0;
       this.client1GroupBox.TabStop = false;
       this.client1GroupBox.Text = "Client1";
@@ -81,14 +82,14 @@
       // 
       // portClient1TextBox
       // 
-      this.portClient1TextBox.Location = new System.Drawing.Point(88, 56);
+      this.portClient1TextBox.Location = new System.Drawing.Point(66, 60);
       this.portClient1TextBox.Name = "portClient1TextBox";
       this.portClient1TextBox.Size = new System.Drawing.Size(136, 20);
       this.portClient1TextBox.TabIndex = 1;
       // 
       // IPClient1TextBox
       // 
-      this.IPClient1TextBox.Location = new System.Drawing.Point(88, 29);
+      this.IPClient1TextBox.Location = new System.Drawing.Point(66, 33);
       this.IPClient1TextBox.Name = "IPClient1TextBox";
       this.IPClient1TextBox.ReadOnly = true;
       this.IPClient1TextBox.Size = new System.Drawing.Size(136, 20);
@@ -100,9 +101,9 @@
       this.client2GroupBox.Controls.Add(this.portClient2Label);
       this.client2GroupBox.Controls.Add(this.portClient2TextBox);
       this.client2GroupBox.Controls.Add(this.IPClient2TextBox);
-      this.client2GroupBox.Location = new System.Drawing.Point(249, 26);
+      this.client2GroupBox.Location = new System.Drawing.Point(244, 26);
       this.client2GroupBox.Name = "client2GroupBox";
-      this.client2GroupBox.Size = new System.Drawing.Size(230, 100);
+      this.client2GroupBox.Size = new System.Drawing.Size(218, 100);
       this.client2GroupBox.TabIndex = 1;
       this.client2GroupBox.TabStop = false;
       this.client2GroupBox.Text = "Client2";
@@ -127,14 +128,14 @@
       // 
       // portClient2TextBox
       // 
-      this.portClient2TextBox.Location = new System.Drawing.Point(88, 56);
+      this.portClient2TextBox.Location = new System.Drawing.Point(66, 60);
       this.portClient2TextBox.Name = "portClient2TextBox";
       this.portClient2TextBox.Size = new System.Drawing.Size(136, 20);
       this.portClient2TextBox.TabIndex = 1;
       // 
       // IPClient2TextBox
       // 
-      this.IPClient2TextBox.Location = new System.Drawing.Point(88, 30);
+      this.IPClient2TextBox.Location = new System.Drawing.Point(66, 33);
       this.IPClient2TextBox.Name = "IPClient2TextBox";
       this.IPClient2TextBox.Size = new System.Drawing.Size(136, 20);
       this.IPClient2TextBox.TabIndex = 0;
@@ -172,18 +173,29 @@
       // 
       // startButon
       // 
-      this.startButon.Location = new System.Drawing.Point(485, 32);
+      this.startButon.Location = new System.Drawing.Point(468, 32);
       this.startButon.Name = "startButon";
-      this.startButon.Size = new System.Drawing.Size(60, 94);
+      this.startButon.Size = new System.Drawing.Size(75, 43);
       this.startButon.TabIndex = 6;
-      this.startButon.Text = "START";
+      this.startButon.Text = "Start";
       this.startButon.UseVisualStyleBackColor = true;
       this.startButon.Click += new System.EventHandler(this.startButon_Click);
+      // 
+      // closeButton
+      // 
+      this.closeButton.Enabled = false;
+      this.closeButton.Location = new System.Drawing.Point(468, 79);
+      this.closeButton.Name = "closeButton";
+      this.closeButton.Size = new System.Drawing.Size(75, 47);
+      this.closeButton.TabIndex = 7;
+      this.closeButton.Text = "Close";
+      this.closeButton.UseVisualStyleBackColor = true;
       // 
       // Client
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.closeButton);
       this.Controls.Add(this.startButon);
       this.Controls.Add(this.sendButton);
       this.Controls.Add(this.listMessage);
@@ -218,5 +230,6 @@
     private System.Windows.Forms.ListBox listMessage;
     private System.Windows.Forms.Button sendButton;
     private System.Windows.Forms.Button startButon;
+    private System.Windows.Forms.Button closeButton;
   }
 }

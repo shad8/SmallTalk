@@ -5,24 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
+using System.Runtime.Remoting.Messaging;
+using System.Threading;
 
 namespace SmallTakl
 {
-  class Connector
+  class Connector:IDisposable
   {
     Socket socket;
     EndPoint epLocal, epRemote;
 
     string localIP;
-
     string receiveMessage = "";
+
+    public delegate void MessageDel(string s);
+    public MessageDel sendText = null;
 
     public Connector()
     {
       socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
       socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
       localIP = GetLocalIP();
-    }
+  }
 
     public string ReceiveMessage { get { return receiveMessage;  } }
     public string LocalIP { get { return localIP; } }
@@ -64,11 +69,18 @@ namespace SmallTakl
       {
         byte[] receiveData = new byte[1462];
         receiveData = (byte[])aResult.AsyncState;
-        receiveMessage = new ASCIIEncoding().GetString(receiveData);
+        ASCIIEncoding ascii = new ASCIIEncoding();
+        receiveMessage = ascii.GetString(receiveData, 0, Array.IndexOf(receiveData, (byte)0)).ToString();
+        Thread.Sleep(300);
+        sendText.Invoke(receiveMessage);
       }
-
       byte[] buffer = new byte[1500];
       socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(MessageCallBack), buffer);
+    }
+
+    public void Dispose()
+    {
+      socket.Close();
     }
   }
 }
