@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Media;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SmallTalk
@@ -12,13 +13,16 @@ namespace SmallTalk
     {
       InitializeComponent();
 
-      connect = new Connector();
-      IPClient1TextBox.Text = connect.LocalIP;
-      connect.sendText += Connect_sendText;
+      IPClient1TextBox.Text = Connector.GetLocalIP();
     }
 
 
     private void sendButton_Click(object sender, EventArgs e)
+    {
+      sendMessage();
+    }
+
+    private void sendMessage()
     {
       try
       {
@@ -44,10 +48,20 @@ namespace SmallTalk
       }
     }
 
+    private void Connect_info(string s)
+    {
+      MessageBox.Show(s, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
     private void startButon_Click(object sender, EventArgs e)
     {
       try
       {
+        connect = new Connector();
+        IPClient1TextBox.Text = connect.LocalIP;
+        connect.sendText += Connect_sendText;
+        connect.error += Connect_info;
+
         connect.Start(portClient1TextBox.Text, IPClient2TextBox.Text, portClient2TextBox.Text);
 
         startButon.Text = "Connected";
@@ -65,6 +79,17 @@ namespace SmallTalk
     private void closeButton_Click(object sender, EventArgs e)
     {
       connect.Dispose();
+      startButon.Enabled = true;
+      startButon.Text = "Start";
+      closeButton.Enabled = false;
+    }
+
+    private void messageTextBox_KeyUp(object sender, KeyEventArgs e)
+    {
+      if(e.KeyCode == Keys.Enter)
+      {
+        sendMessage();
+      }
     }
   }
 }

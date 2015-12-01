@@ -93,7 +93,6 @@
       // 
       this.IPClient1TextBox.Location = new System.Drawing.Point(66, 33);
       this.IPClient1TextBox.Name = "IPClient1TextBox";
-      this.IPClient1TextBox.ReadOnly = true;
       this.IPClient1TextBox.Size = new System.Drawing.Size(136, 20);
       this.IPClient1TextBox.TabIndex = 0;
       // 
@@ -148,6 +147,7 @@
       this.messageTextBox.Name = "messageTextBox";
       this.messageTextBox.Size = new System.Drawing.Size(449, 20);
       this.messageTextBox.TabIndex = 2;
+      this.messageTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyUp);
       // 
       // contextMenuStrip1
       // 

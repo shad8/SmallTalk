@@ -15,7 +15,10 @@ namespace SmallTalk
     string receiveMessage = "";
 
     public delegate void MessageDel(string s);
+    public delegate void MessageErrorDel(string s); 
+
     public MessageDel sendText = null;
+    public MessageErrorDel error = null;
 
     public Connector()
     {
@@ -27,7 +30,7 @@ namespace SmallTalk
     public string ReceiveMessage { get { return receiveMessage;  } }
     public string LocalIP { get { return localIP; } }
 
-    private string GetLocalIP()
+    public static string GetLocalIP()
     {
       IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
       foreach (IPAddress ip in host.AddressList)
@@ -61,31 +64,32 @@ namespace SmallTalk
     {
       int size = 0;
 
-      try
+      if(socket.Connected)
       {
         size = socket.EndReceiveFrom(aResult, ref epRemote);
-      }
-      catch (ObjectDisposedException e)
-      {
-        throw new Exception();
-      }
-      if (size > 0)
-      {
-        byte[] receiveData = new byte[1462];
-        receiveData = (byte[])aResult.AsyncState;
-        ASCIIEncoding ascii = new ASCIIEncoding();
-        receiveMessage = ascii.GetString(receiveData, 0, Array.IndexOf(receiveData, (byte)0)).ToString();
-        Thread.Sleep(300);
-        sendText.Invoke(receiveMessage);
-      }
-      byte[] buffer = new byte[1500];
+        
+        if (size > 0)
+        {
+          byte[] receiveData = new byte[1462];
+          receiveData = (byte[])aResult.AsyncState;
+          ASCIIEncoding ascii = new ASCIIEncoding();
+          receiveMessage = ascii.GetString(receiveData, 0, Array.IndexOf(receiveData, (byte)0)).ToString();
+          Thread.Sleep(300);
+          sendText.Invoke(receiveMessage);
+        }
+        byte[] buffer = new byte[1500];
 
-      socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(MessageCallBack), buffer);
+        socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(MessageCallBack), buffer);
+      }
+      else
+      {
+        error("Connection stopped");
+      }
     }
 
     public void Dispose()
     {
-      socket.Close();
+      ((IDisposable)socket).Dispose();
     }
   }
 }
