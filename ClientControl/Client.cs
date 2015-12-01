@@ -2,7 +2,7 @@
 using System.Media;
 using System.Windows.Forms;
 
-namespace SmallTakl
+namespace SmallTalk
 {
   public partial class Client : UserControl
   {

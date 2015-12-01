@@ -1,4 +1,4 @@
-﻿namespace SmallTakl
+﻿namespace SmallTalk
 {
   partial class Client
   {

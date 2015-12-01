@@ -19,7 +19,7 @@
       }
       base.Dispose(disposing);
     }
-
+    
     #region Windows Form Designer generated code
 
     /// <summary>
@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.client1 = new SmallTakl.Client();
+      this.client1 = new SmallTalk.Client();
       this.SuspendLayout();
       // 
       // client1
@@ -54,7 +54,7 @@
 
     #endregion
 
-    private SmallTakl.Client client1;
+    private SmallTalk.Client client1;
   }
 }
 

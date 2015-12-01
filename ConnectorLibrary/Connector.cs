@@ -4,9 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace SmallTakl
+namespace SmallTalk
 {
-  class Connector:IDisposable
+  public class Connector:IDisposable
   {
     Socket socket;
     EndPoint epLocal, epRemote;
@@ -59,7 +59,16 @@ namespace SmallTakl
 
     private void MessageCallBack(IAsyncResult aResult)
     {
-      int size = socket.EndReceiveFrom(aResult, ref epRemote);
+      int size = 0;
+
+      try
+      {
+        size = socket.EndReceiveFrom(aResult, ref epRemote);
+      }
+      catch (ObjectDisposedException e)
+      {
+        throw new Exception();
+      }
       if (size > 0)
       {
         byte[] receiveData = new byte[1462];
@@ -70,6 +79,7 @@ namespace SmallTakl
         sendText.Invoke(receiveMessage);
       }
       byte[] buffer = new byte[1500];
+
       socket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(MessageCallBack), buffer);
     }
 
